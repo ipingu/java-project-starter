@@ -3,14 +3,19 @@
 	xmlns:amq="http://activemq.apache.org/schema/core" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 						http://www.springframework.org/schema/tx
-      					http://www.springframework.org/schema/tx/spring-tx.xsd">
+      					http://www.springframework.org/schema/tx/spring-tx.xsd
+      					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<description>
 	Spring config
 	</description>
+	
+	       <context:component-scan base-package="com.asbarak.rest"/>
+	
 	
 	<!-- HSQL-DB memory database; for testing only -->
 	<bean id="hsqlMemoryDb" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -79,9 +84,9 @@
  	</bean>
  	
  	<!-- Rest -->
- 	<bean id="pictureResource" class="com.asbarak.rest.PictureResource" >
+ 	<!--<bean id="pictureResource" class="com.asbarak.rest.PictureResource" >
  		<property name="pictureContentProvider" ref="pictureContentProvider" />
  		<property name="picturePublisher" ref="picturePublisher" />
  	</bean>
  
-</beans>
+--></beans>
