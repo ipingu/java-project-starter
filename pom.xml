@@ -1,0 +1,227 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.asbarak</groupId>
+	<artifactId>asbarak</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<properties>
+		<catalina.home>/opt/apache-tomcat-6.0.20-asbarak</catalina.home>
+	</properties>
+	
+	<repositories>
+		<repository>
+			<id>jboss</id>
+			<url>http://repository.jboss.org/maven2/</url>
+		</repository>
+		
+		<repository>
+			<id>java.net</id>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<finalName>${artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+        <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven2-plugin</artifactId>
+            <configuration>
+                <wait>true</wait>
+                <container>
+                    <containerId>tomcat6x</containerId>
+                    <type>installed</type>
+                    <home>${catalina.home}</home>
+                </container>
+                <configuration>
+                    <type>existing</type> 
+                    <home>${catalina.home}</home>
+                <properties>
+                        <cargo.tomcat.manager.url>https://localhost:8080/manager</cargo.tomcat.manager.url>
+                        <cargo.remote.username>tomcat</cargo.remote.username>
+                        <cargo.remote.password>tomcat</cargo.remote.password>
+                    </properties>
+                </configuration>
+                <deployer>
+                    <type>installed</type>
+                    <deployables>
+                        <deployable>
+                            <groupId>com.asbarak</groupId>
+                            <artifactId>asbarak</artifactId>
+                            <type>war</type>
+                        </deployable>
+                    </deployables>
+                </deployer>
+            </configuration><!--
+            <executions>
+                <execution>
+                    <id>start-container</id>
+                    <phase>pre-integration-test</phase>
+                    <goals>
+                        <goal>deployer-deploy</goal>
+                          Only local containers can be started  
+                        <goal>start</goal>
+                        
+                    </goals>
+                </execution>
+                <execution>
+                    <id>stop-container</id>
+                    <phase>post-integration-test</phase>
+                    <goals>
+                        <goal>deployer-undeploy</goal>
+                          Only local containers can be started  
+                        <goal>stop</goal>
+                        
+                    </goals>
+                </execution>
+                <execution>
+                    <id>verify-deploy</id>
+                    <phase>install</phase>
+                    <goals>
+                        <goal>deployer-deploy</goal>
+                    </goals>
+                </execution> 
+                <execution>
+                    <id>clean-undeploy</id>
+                    <phase>pre-clean</phase>
+                    <goals>
+                        <goal>deployer-undeploy</goal>
+                          Only local containers can be started  
+                        <goal>stop</goal>
+                        
+                    </goals>
+                </execution> 
+
+            </executions>
+        --></plugin>
+    </plugins>
+		
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.openid4java</groupId>
+			<artifactId>openid4java-consumer</artifactId>
+			<version>0.9.5</version>
+		</dependency>
+		<dependency>
+			<!-- spring -->
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>2.5.6</version>
+		</dependency>
+		<dependency>
+			<!-- needed by spring -->
+			<groupId>org.apache.xbean</groupId>
+			<artifactId>xbean-spring</artifactId>
+			<version>3.4.3</version>
+		</dependency>
+		<dependency>
+			<!-- for logging -->
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.13</version>
+			<type>jar</type>
+		</dependency>
+				<dependency>
+			<!-- hibernate JPA support -->
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.4.0.GA</version>
+		</dependency>
+		<dependency>
+			<!-- hibernate entity manager -->
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.4.0.GA</version>
+		</dependency>
+		<dependency>
+			<!-- runtime requirement hibernate needs -->
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0.10</version>
+		</dependency>
+		
+		  <!-- the implementation of JAX-RS -->
+			  <dependency>
+		  <groupId>com.sun.jersey</groupId>
+		  <artifactId>jersey-server</artifactId>
+		  <version>1.2</version>
+		 </dependency>
+		 <dependency>
+		  <groupId>javax.mail</groupId>
+		  <artifactId>mail</artifactId>
+		  <version>1.4.2</version>
+		 </dependency>
+		 <dependency>
+		<groupId>com.sun.jersey</groupId>
+    <artifactId>jersey-spring</artifactId>
+    	<version>1.0</version>
+		</dependency>
+		
+		<!-- PROVIDED SCOPE -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- TEST SCOPE -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.8.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- spring test; useful for DB testing -->
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>2.5.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>2.4.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.6.20</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.2.134</version>
+		</dependency>
+
+	</dependencies>
+</project>

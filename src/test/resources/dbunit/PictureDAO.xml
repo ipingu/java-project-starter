@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	<picture id="1" path="/home/erik/avatar.jpg" />
+	<picture id="2" path="/home/erik/avatar2.jpeg" />
+	<picture id="3" path="/home/erik/avatar3.jpeg" />
+</dataset>
