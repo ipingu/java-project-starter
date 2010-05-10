@@ -11,8 +11,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.asbarak.domain.Picture;
-import com.asbarak.persistence.PictureDAO;
+import com.clairiot.domain.Picture;
+import com.clairiot.module.PicturePublisher;
+import com.clairiot.persistence.PictureDAO;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PicturePublisherTest {

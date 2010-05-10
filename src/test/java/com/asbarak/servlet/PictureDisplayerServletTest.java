@@ -18,6 +18,8 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.AbstractTransactionalDataSourceSpringContextTests;
 
+import com.clairiot.servlet.PictureDisplayerServlet;
+
 public class PictureDisplayerServletTest 
 	extends AbstractTransactionalDataSourceSpringContextTests {
 

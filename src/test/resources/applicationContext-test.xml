@@ -40,7 +40,7 @@
    		</property>
 	    <property name="packagesToScan">
 	        <list>
-	            <value>com.asbarak.domain</value>
+	            <value>com.clairiot.domain</value>
 	        </list>
     	</property>
   	</bean>
@@ -55,17 +55,17 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<!-- DAOs -->
-	<bean id="pictureDAO" class="com.asbarak.persistence.PictureDAO">
+	<bean id="pictureDAO" class="com.clairiot.persistence.PictureDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="pictureContentProvider" class="com.asbarak.module.PictureContentProvider" scope="singleton" />
+	<bean id="pictureContentProvider" class="com.clairiot.module.PictureContentProvider" scope="singleton" />
 	
-	<bean id="picturePublisher" class="com.asbarak.module.PicturePublisher" scope="singleton">
+	<bean id="picturePublisher" class="com.clairiot.module.PicturePublisher" scope="singleton">
 		<property name="dao" ref="pictureDAO" /> 
 	</bean>
  	
- 	<bean id="pictureDisplayerServlet" class="com.asbarak.servlet.PictureDisplayerServlet">
+ 	<bean id="pictureDisplayerServlet" class="com.clairiot.servlet.PictureDisplayerServlet">
  		<property name="pictureContentProvider" ref="pictureContentProvider"/>
  		<property name="picturePublisher" ref="picturePublisher"/>
  	</bean>

@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.asbarak</groupId>
-	<artifactId>asbarak</artifactId>
+	<groupId>com.clairiot</groupId>
+	<artifactId>java-project-starter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -63,7 +63,7 @@
                     <type>installed</type>
                     <deployables>
                         <deployable>
-                            <groupId>com.asbarak</groupId>
+                            <groupId>com.clairiot</groupId>
                             <artifactId>asbarak</artifactId>
                             <type>war</type>
                         </deployable>

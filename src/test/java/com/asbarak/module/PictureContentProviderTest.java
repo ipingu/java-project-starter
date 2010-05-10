@@ -9,8 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.AssertThrows;
 
-import com.asbarak.domain.Picture;
-import com.asbarak.exception.ResourceAccessException;
+import com.clairiot.domain.Picture;
+import com.clairiot.exception.ResourceAccessException;
+import com.clairiot.module.PictureContentProvider;
 
 public class PictureContentProviderTest {
 

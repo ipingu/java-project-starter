@@ -16,7 +16,8 @@ import org.junit.Test;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.test.AbstractTransactionalDataSourceSpringContextTests;
 
-import com.asbarak.domain.Picture;
+import com.clairiot.domain.Picture;
+import com.clairiot.persistence.PictureDAO;
 
 public class PictureDAOTest 
 	extends AbstractTransactionalDataSourceSpringContextTests {

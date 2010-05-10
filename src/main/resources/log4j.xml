@@ -48,7 +48,7 @@
 	</category>
 
 	<!-- Application -->
-	<category name="com.asbarak">
+	<category name="com.clairiot">
 		<priority value="debug" />
 	</category>
 	
