@@ -1,4 +1,4 @@
-package com.asbarak.persistence;
+package com.clairiot.persistence;
 
 import java.io.FileInputStream;
 import java.sql.Connection;

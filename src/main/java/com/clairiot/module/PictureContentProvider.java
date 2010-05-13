@@ -1,11 +1,6 @@
 package com.clairiot.module;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
+import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 
@@ -16,40 +11,37 @@ public class PictureContentProvider {
 
 	private static final Logger log = Logger.getLogger(PictureContentProvider.class);
 	
+	private FileManager fileManager;
+	
 	public byte[] getContent(Picture picture) throws ResourceAccessException {
 		if (picture == null)
 			throw new IllegalArgumentException("No picture provided");
 		
-		File file = picture.getFile();
+		String pathToFile = picture.getPath();
 		
-		if (isNotValidFile(file)) {
-			throw new ResourceAccessException("File does not exist or is not readable");
-		}
-
+		byte[] content = fileManager.readContentFromBinaryFile(pathToFile);
+		
+		return content;
+	}
+	
+	public boolean saveContent(InputStream input, String name) {
 		try {
-			ImageInputStream imageIn = ImageIO.createImageInputStream(file);
-			ByteArrayOutputStream output = new ByteArrayOutputStream();
-			
-			int character = 0;
-			while ((character = imageIn.read()) != -1) {
-				output.write(character);
-			}
-			
-			return output.toByteArray();
-			
-		} catch (IOException e) {
-			if (log.isDebugEnabled())
-				log.debug("IOException occured : " + e.getMessage());
-			
-			throw new ResourceAccessException("IOException : " + e.getMessage());
-		}		
+			return fileManager.copy(input, name);
+		} catch (ResourceAccessException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 
-	private boolean isNotValidFile(File file) {
-		return file == null 
-			|| ! file.exists() 
-			|| file.isDirectory() 
-			|| ! file.canRead();
+	// injection
+	
+	public FileManager getFileManager() {
+		return fileManager;
+	}
+
+	public void setFileManager(FileManager fileManager) {
+		this.fileManager = fileManager;
 	}
 	
 }

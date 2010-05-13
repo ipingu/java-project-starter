@@ -66,12 +66,21 @@
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:environment.properties</value>
+		</property>
+	</bean>
+	
+	
 	<!-- DAOs -->
 	<bean id="pictureDAO" class="com.clairiot.persistence.PictureDAO">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	
-	<bean id="pictureContentProvider" class="com.clairiot.module.PictureContentProvider" scope="singleton" />
+	<bean id="pictureContentProvider" class="com.clairiot.module.PictureContentProvider" scope="singleton">
+		<property name="fileManager" ref="fileManager" />
+	</bean>
 	
 	<bean id="picturePublisher" class="com.clairiot.module.PicturePublisher" scope="singleton">
 		<property name="dao" ref="pictureDAO" /> 
@@ -89,4 +98,9 @@
  		<property name="picturePublisher" ref="picturePublisher" />
  	</bean>
  
---></beans>
+-->
+	<bean id="fileManager" class="com.clairiot.module.FileManager">
+		<property name="parentPath" value="${storage.files.parentPath}" />
+	</bean>
+	
+</beans>

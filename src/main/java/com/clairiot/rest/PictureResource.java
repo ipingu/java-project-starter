@@ -1,6 +1,7 @@
 package com.clairiot.rest;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -23,6 +24,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.clairiot.domain.Picture;
+import com.clairiot.model.PicturesList;
 import com.clairiot.module.PictureContentProvider;
 import com.clairiot.module.PicturePublisher;
 import com.sun.jersey.spi.inject.Inject;
@@ -51,10 +53,17 @@ public class PictureResource {
 		}
 	}
 	
+
+	@GET
+	@Produces("application/json")
+	@Path("/list")
+	public PicturesList getPicturesList() {
+		return picturePublisher.getListOfPictures();
+	}
+	
 	@POST
 	@Produces("text/plain")
 	public String uploadPicture(@Context HttpServletRequest request) {
-		log.debug("erf");
 		if (! ServletFileUpload.isMultipartContent(request))
 			return "no multi";
 		
@@ -68,11 +77,12 @@ public class PictureResource {
 			for (FileItem item : items) {
 				if (item.isFormField()) continue;
 				
-				log.debug("item = " + item.getName());
+				log.debug("item to upload = " + item.getName());
 				try {
-					item.write(new File("/home/erik/essai.jpg"));
-					picture = picturePublisher.insertPicture("/home/erik/essai.jpg");
-					
+					InputStream input = item.getInputStream();
+					if (pictureContentProvider.saveContent(input, item.getName())) {
+						picture = picturePublisher.insertPicture(item.getName());
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

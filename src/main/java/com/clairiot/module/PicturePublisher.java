@@ -1,8 +1,11 @@
 package com.clairiot.module;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import com.clairiot.domain.Picture;
+import com.clairiot.model.PicturesList;
 import com.clairiot.persistence.PictureDAO;
 
 public class PicturePublisher {
@@ -33,6 +36,17 @@ public class PicturePublisher {
 	public Picture insertPicture(String path) {
 		Picture picture = new Picture(path);
 		return this.dao.save(picture);
+	}
+
+	public PicturesList getListOfPictures() {
+		PicturesList list = new PicturesList();
+		
+		List<Picture> all = dao.findAll();
+		for (Picture picture : all) {
+			list.pictures.add(picture.getId().toString());
+		}
+		
+		return list;
 	}
 
 	// injection

@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="javascripts/jquery.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -12,5 +13,23 @@
 	<input type="file" name="file" value="Select file" />
 	<input type="submit" name="Upload" />
 </form>
+<h1>Available pictures</h1>
+<ul id="picturesListing">
+
+</ul>
+
+<script type="text/javascript" >
+$(function () { 
+	
+        $.getJSON("rest/picture/list",
+        function success(data){ 
+			var list = $("#picturesListing");
+			$.each(data.pictures, function(i, item) { 
+				list.append("<li><img alt=\"" + item + "\" src=\"rest/picture/" + item + "\"/></li>");
+			});
+	});
+});
+</script>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.asbarak.module;
+package com.clairiot.module;
 
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.fail;
@@ -7,12 +7,17 @@ import java.io.File;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.test.AssertThrows;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.clairiot.domain.Picture;
 import com.clairiot.exception.ResourceAccessException;
 import com.clairiot.module.PictureContentProvider;
 
+@ContextConfiguration(locations={"classpath:applicationContext-test.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
 public class PictureContentProviderTest {
 
 	private PictureContentProvider provider;
