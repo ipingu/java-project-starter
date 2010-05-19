@@ -81,5 +81,9 @@
  	<bean id="fileManager" class="com.clairiot.module.FileManager">
 		<property name="parentPath" value="${storage.files.parentPath}" />
 	</bean>
+
+	<bean id="contextHolder" class="com.clairiot.utils.ExecutionContextHolder">
+		<property name="configurationPath" value="environment-test.properties" />
+	</bean>
  	
 </beans>
