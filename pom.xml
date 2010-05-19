@@ -45,6 +45,20 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
+
+ <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+           <configuration>
+              <outputDirectory>repository</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>false</overWriteSnapshots>
+              <overWriteIfNewer>true</overWriteIfNewer>
+		<useRepositoryLayout>true</useRepositoryLayout>
+            </configuration>
+      </plugin>
+
+
         <plugin>
             <groupId>org.codehaus.cargo</groupId>
             <artifactId>cargo-maven2-plugin</artifactId>
