@@ -7,18 +7,12 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.params.HttpClientParams;
-import org.apache.commons.httpclient.params.HttpParamsFactory;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openid4java.consumer.ConsumerException;
 import org.openid4java.consumer.ConsumerManager;
 import org.openid4java.discovery.DiscoveryException;
-import org.openid4java.util.OpenID4JavaUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

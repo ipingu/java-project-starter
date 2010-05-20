@@ -1,1 +1,2 @@
-README file to document more ...
+mvn jetty:run -> run an embedded jetty server where the webapp is deployed
+mvn dependency:copy-dependencies -> copy project dependencies into a local repository

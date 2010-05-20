@@ -17,9 +17,7 @@ public class ExecutionContextHolder {
 	private static final Logger LOG = Logger.getLogger(ExecutionContextHolder.class);
 	private static final boolean DEBUG = LOG.isDebugEnabled();
 	
-	
-	
-	{
+	public ExecutionContextHolder() {
 		InputStream stream = ExecutionContextHolder.class.getResourceAsStream(configurationPath);
 		
 		if (stream != null) {
@@ -109,9 +107,5 @@ public class ExecutionContextHolder {
 		this.configurationPath = configurationPath;
 	}
 
-	// injection
-	
-
-	
 
 }

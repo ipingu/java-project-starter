@@ -11,13 +11,11 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
-import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.test.AbstractTransactionalDataSourceSpringContextTests;
 
 import com.clairiot.domain.Picture;
-import com.clairiot.persistence.PictureDAO;
 
 public class PictureDAOTest 
 	extends AbstractTransactionalDataSourceSpringContextTests {
@@ -34,7 +32,7 @@ public class PictureDAOTest
 
 	@Override
 	protected void onSetUpInTransaction() throws Exception {
-		DataSource dataSource = jdbcTemplate.getDataSource();
+		DataSource dataSource = getJdbcTemplate().getDataSource();
 		Connection con = DataSourceUtils.getConnection(dataSource);
 		IDatabaseConnection dbUnitCon = new DatabaseConnection(con);
 		

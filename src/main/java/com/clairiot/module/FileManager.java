@@ -31,6 +31,8 @@ public class FileManager {
 		
 		File dest = getFullPath(path, false);
 		
+		if (log.isDebugEnabled()) log.debug("Copying content to file " + dest.getAbsolutePath());
+		
 		FileWriter writer = null;
 		InputStreamReader reader = null;
 		try {
